@@ -18,9 +18,13 @@ class cvmfs::client (
     }
     file {
       "/etc/cvmfs/default.local":
-      owner => root, group => root, mode => 644,
+      owner => root,
+      group => root, 
+      mode => 644,
       content => template("cvmfs/default.local.erb"),
-      notify => Exec["cvmfs reload"]
+      notify => Exec["cvmfs reload"],
+      replace => "no",      
+      
     }
 
     file { "/etc/auto.cvmfs":
